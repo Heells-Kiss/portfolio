@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зерно — кофейня на Литейном</title>
+<meta name="description" content="Кофейня specialty-кофе: обжарка на месте, завтраки весь день, предзаказ онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f0e8;--ink:#2a1d14;--muted:#7a6758;--accent:#b4532a;--card:#fffaf3;--line:#e6d9c8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:700;border:0;cursor:pointer;font-size:16px;transition:transform .15s,background .15s}
+.btn:hover{background:#9a4421;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+header{position:sticky;top:0;z-index:10;background:rgba(246,240,232,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:Fraunces,serif;font-size:26px;font-weight:700;text-decoration:none}
+.logo span{color:var(--accent)}
+.menu{display:flex;gap:28px;list-style:none}
+.menu a{text-decoration:none;font-weight:500}
+.menu a:hover{color:var(--accent)}
+.burger{display:none;background:none;border:0;font-size:28px;cursor:pointer;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:72px 0}
+.hero h1{font-size:clamp(38px,6vw,68px)}
+.hero p{font-size:19px;color:var(--muted);margin:20px 0 32px;max-width:520px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.cup{aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 45%,#6b3d22 0 34%,#c98f5f 35% 37%,#fffaf3 38% 52%,var(--line) 53% 54%,transparent 55%),radial-gradient(circle at 30% 30%,#e9b98a,#b4532a);box-shadow:0 30px 60px -20px rgba(80,40,10,.45)}
+.facts{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap}
+.facts b{display:block;font-family:Fraunces,serif;font-size:32px;color:var(--accent)}
+.facts span{color:var(--muted);font-size:14px}
+section{padding:80px 0}
+.sec-title{font-size:clamp(30px,4vw,44px);margin-bottom:12px}
+.sec-sub{color:var(--muted);margin-bottom:40px;max-width:560px}
+.tabs{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.tab{border:2px solid var(--ink);background:transparent;padding:8px 18px;border-radius:999px;font:inherit;font-weight:700;cursor:pointer;color:var(--ink)}
+.tab.active{background:var(--ink);color:#fff}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:6px}
+.item.hide{display:none}
+.item h3{font-size:21px}
+.item p{color:var(--muted);font-size:15px;flex:1}
+.item .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.price{font-weight:700;font-size:18px}
+.add{background:var(--accent);color:#fff;border:0;width:38px;height:38px;border-radius:50%;font-size:22px;cursor:pointer}
+.about{background:var(--ink);color:#f6f0e8}
+.about .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.about .sec-sub{color:#c9b6a3}
+.step{border-top:2px solid var(--accent);padding-top:18px}
+.step h3{font-size:22px;margin-bottom:8px}
+.step p{color:#c9b6a3}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{background:var(--card);border-radius:18px;padding:26px;border:1px solid var(--line)}
+.review .stars{color:var(--accent);letter-spacing:2px}
+.review p{margin:12px 0}
+.review b{font-size:14px}
+.order{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px;display:grid;gap:16px}
+label{font-weight:700;font-size:14px;display:grid;gap:6px}
+input,select{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+.cart{font-size:15px;color:var(--muted)}
+.ok{display:none;background:#e7f3e3;color:#2d5a22;padding:14px;border-radius:12px;font-weight:700}
+.contacts p{margin-bottom:10px}
+.map{margin-top:20px;height:220px;border-radius:18px;background:repeating-linear-gradient(45deg,#e8dccb 0 12px,#efe5d7 12px 24px);display:grid;place-items:center;font-weight:700;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
+@media (max-width:860px){
+  .menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px;gap:16px;border-bottom:1px solid var(--line)}
+  .menu.open{display:flex}
+  .burger{display:block}
+  .hero,.order{grid-template-columns:1fr}
+  .hero{padding:40px 0}
+  .cup{max-width:320px;margin:0 auto;width:100%}
+  .about .grid,.reviews{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">Зер<span>но</span></a>
+    <ul class="menu" id="menu">
+      <li><a href="#menu-sec">Меню</a></li>
+      <li><a href="#about">О кофе</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+      <li><a href="#order">Предзаказ</a></li>
+    </ul>
+    <button class="burger" aria-label="Открыть меню" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <h1>Кофе, который обжарили вчера</h1>
+    <p>Specialty-зерно из Эфиопии, Колумбии и Кении. Обжариваем сами, варим при вас, завтраки подаём весь день.</p>
+    <div class="cta">
+      <a href="#order" class="btn">Заказать навынос</a>
+      <a href="#menu-sec" class="btn ghost">Смотреть меню</a>
+    </div>
+    <div class="facts">
+      <div><b>7:30</b><span>открываемся каждый день</span></div>
+      <div><b>12</b><span>сортов зерна в работе</span></div>
+      <div><b>5 мин</b><span>до готовности заказа</span></div>
+    </div>
+  </div>
+  <div class="cup" role="img" aria-label="Чашка капучино сверху"></div>
+</div>
+
+<section id="menu-sec">
+  <div class="wrap">
+    <h2 class="sec-title">Меню</h2>
+    <p class="sec-sub">Нажмите «+», чтобы добавить позицию в предзаказ.</p>
+    <div class="tabs">
+      <button class="tab active" data-f="all">Всё</button>
+      <button class="tab" data-f="coffee">Кофе</button>
+      <button class="tab" data-f="food">Еда</button>
+      <button class="tab" data-f="sweet">Десерты</button>
+    </div>
+    <div class="menu-grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <h2 class="sec-title">Как мы работаем с зерном</h2>
+    <p class="sec-sub">Три правила, которые не меняются с первого дня.</p>
+    <div class="grid">
+      <div class="step"><h3>Прямые закупки</h3><p>Берём зерно у импортёров, которые знают ферму и год урожая. Без смесей «по акции».</p></div>
+      <div class="step"><h3>Своя обжарка</h3><p>Ростер стоит прямо в зале. Партии маленькие, кофе не лежит дольше трёх недель.</p></div>
+      <div class="step"><h3>Бариста с опытом</h3><p>Каждый бариста проходит месячную стажировку и сдаёт каппинг перед выходом на смену.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <h2 class="sec-title">Отзывы гостей</h2>
+    <p class="sec-sub">Демо-отзывы для макета.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>Флэт уайт на кенийском зерне — лучший в районе. Беру по пути на работу, заказ готов к приходу.</p><b>Анна</b></div>
+      <div class="review"><div class="stars">★★★★★</div><p>Сырники здесь пожалуй лучше, чем у мамы. Только маме не говорите.</p><b>Илья</b></div>
+      <div class="review"><div class="stars">★★★★☆</div><p>Уютно, тихо, есть розетки. Утром бывает очередь, но предзаказ спасает.</p><b>Мария</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap order">
+    <div class="contacts">
+      <h2 class="sec-title">Предзаказ и контакты</h2>
+      <p class="sec-sub">Оформите заказ — заберёте без очереди.</p>
+      <p><b>Адрес:</b> Литейный пр., 00 (демо)</p>
+      <p><b>Часы:</b> ежедневно 7:30–22:00</p>
+      <p><b>Телефон:</b> +7 (000) 000-00-00</p>
+      <div class="map">Здесь будет карта</div>
+    </div>
+    <form id="form" novalidate>
+      <div class="cart" id="cart">В заказе пока пусто — добавьте позиции из меню.</div>
+      <label>Имя<input name="name" required placeholder="Как к вам обращаться"></label>
+      <label>Телефон<input name="phone" type="tel" required placeholder="+7 900 000-00-00" pattern="[+0-9 ()-]{10,}"></label>
+      <label>Заберу в
+        <select name="time"><option>Через 15 минут</option><option>Через 30 минут</option><option>Через час</option></select>
+      </label>
+      <button class="btn" type="submit">Отправить предзаказ</button>
+      <div class="ok" id="ok">Спасибо! Это демо: заявка никуда не отправлена.</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© Зерно. Демонстрационный сайт для портфолио, компания вымышленная.</div></footer>
+
+<script>
+const items=[
+ {n:'Эспрессо',d:'Эфиопия Иргачеффе, ягодная кислинка',p:150,c:'coffee'},
+ {n:'Флэт уайт',d:'Двойной эспрессо и шелковистое молоко',p:260,c:'coffee'},
+ {n:'Капучино',d:'Классика на зерне из Колумбии',p:240,c:'coffee'},
+ {n:'Фильтр-кофе',d:'Воронка V60, сорт дня',p:220,c:'coffee'},
+ {n:'Сырники',d:'Со сметаной и ягодным соусом',p:390,c:'food'},
+ {n:'Скрэмбл с лососем',d:'На бриоши, с зеленью',p:520,c:'food'},
+ {n:'Чизкейк',d:'Нью-Йорк, без лишнего сахара',p:330,c:'sweet'},
+ {n:'Круассан',d:'Сливочное масло 82%, печём утром',p:190,c:'sweet'}
+];
+const grid=document.getElementById('grid'),cart={};
+grid.innerHTML=items.map((it,i)=>`<div class="item" data-c="${it.c}"><h3>${it.n}</h3><p>${it.d}</p><div class="row"><span class="price">${it.p} ₽</span><button class="add" data-i="${i}" aria-label="Добавить ${it.n}">+</button></div></div>`).join('');
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+ grid.querySelectorAll('.item').forEach(el=>el.classList.toggle('hide',t.dataset.f!=='all'&&el.dataset.c!==t.dataset.f));
+});
+function renderCart(){
+ const keys=Object.keys(cart);const el=document.getElementById('cart');
+ if(!keys.length){el.textContent='В заказе пока пусто — добавьте позиции из меню.';return}
+ let sum=0;el.innerHTML='<b>Ваш заказ:</b><br>'+keys.map(k=>{const it=items[k];sum+=it.p*cart[k];return `${it.n} × ${cart[k]}`}).join(', ')+`<br><b>Итого: ${sum} ₽</b>`;
+}
+grid.onclick=e=>{const b=e.target.closest('.add');if(!b)return;cart[b.dataset.i]=(cart[b.dataset.i]||0)+1;renderCart();b.textContent='✓';setTimeout(()=>b.textContent='+',600)};
+document.getElementById('form').onsubmit=e=>{
+ e.preventDefault();const f=e.target;
+ if(!f.checkValidity()){f.reportValidity();return}
+ document.getElementById('ok').style.display='block';f.reset();
+};
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=()=>document.getElementById('menu').classList.remove('open'));
+</script>
+</body>
+</html>
