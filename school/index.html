@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speakly — онлайн-школа английского</title>
+<meta name="description" content="Английский онлайн с преподавателем. Пройдите тест уровня за 2 минуты и получите план занятий.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0f766e;--primary-hover:#115e59;--secondary:#2dd4bf;
+  --accent:#c2410c;--accent-hover:#9a3412;--accent-soft:#ffedd5;
+  --bg:#f0fdfa;--fg:#134e4a;--card:#fff;--muted:#e8f1f4;--muted-fg:#475569;--border:#99f6e4;
+  --danger:#dc2626;
+  --clay:6px 6px 0 #134e4a;--clay-sm:4px 4px 0 #134e4a;
+  --r:22px;--t:200ms
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Nunito,system-ui,sans-serif;font-size:17px;line-height:1.6;background:var(--bg);color:var(--fg)}
+h1,h2,h3{line-height:1.15;font-weight:900;color:#0b3b38}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid #0b3b38;outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 26px;border-radius:16px;border:3px solid #134e4a;background:var(--accent);color:#fff;font:800 17px Nunito,sans-serif;text-decoration:none;cursor:pointer;box-shadow:var(--clay-sm);transition:transform var(--t),box-shadow var(--t),background var(--t)}
+.btn:hover{background:var(--accent-hover)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #134e4a}
+.btn.alt{background:#fff;color:var(--fg)}
+.btn.alt:hover{background:var(--muted)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+header{padding:18px 0}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:900;font-size:26px;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo i{width:40px;height:40px;border-radius:12px;background:var(--secondary);border:3px solid #134e4a;display:grid;place-items:center;font-style:normal;font-size:20px;color:#0b3b38}
+.links{display:flex;gap:26px;list-style:none;font-weight:700}
+.links a{text-decoration:none;padding:10px 0}
+.links a:hover{color:var(--accent)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 70px}
+.hero h1{font-size:clamp(36px,5.5vw,62px);letter-spacing:-.01em}
+.hero h1 mark{background:var(--accent-soft);color:var(--accent);padding:0 .15em;border-radius:12px}
+.hero p{font-size:19px;color:var(--muted-fg);margin:18px 0 30px;max-width:520px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.bubbles{position:relative;min-height:380px}
+.bubble{position:absolute;background:var(--card);border:3px solid #134e4a;border-radius:24px;box-shadow:var(--clay);padding:18px 22px;font-weight:700;max-width:280px}
+.bubble small{display:block;font-weight:600;color:var(--muted-fg);font-size:14px}
+.b1{top:0;left:6%;background:#ccfbf1}
+.b2{top:36%;right:0;background:var(--accent-soft)}
+.b3{bottom:0;left:0}
+.b3 .bar{height:12px;border-radius:99px;background:var(--muted);border:2px solid #134e4a;margin-top:8px;overflow:hidden}
+.b3 .bar span{display:block;height:100%;width:72%;background:var(--primary)}
+section{padding:72px 0}
+.title{font-size:clamp(30px,4vw,44px);margin-bottom:10px}
+.lead{color:var(--muted-fg);max-width:600px;margin-bottom:36px;font-size:18px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--card);border:3px solid #134e4a;border-radius:var(--r);box-shadow:var(--clay);padding:26px}
+.step .n{width:46px;height:46px;border-radius:14px;background:var(--secondary);border:3px solid #134e4a;display:grid;place-items:center;font-weight:900;font-size:20px;margin-bottom:14px}
+.step h3{font-size:21px;margin-bottom:6px}
+.step p{color:var(--muted-fg)}
+/* quiz */
+.quiz{background:var(--card);border:3px solid #134e4a;border-radius:28px;box-shadow:8px 8px 0 #134e4a;padding:34px;max-width:780px;margin:0 auto}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;font-weight:700;color:var(--muted-fg);margin-bottom:12px}
+.progress{height:14px;border-radius:99px;background:var(--muted);border:2px solid #134e4a;overflow:hidden;margin-bottom:26px}
+.progress span{display:block;height:100%;width:0;background:var(--primary);transition:width 300ms ease}
+.q{font-size:clamp(22px,3vw,28px);font-weight:800;margin-bottom:20px;color:#0b3b38}
+.q code{font-family:inherit;background:var(--accent-soft);color:var(--accent);padding:0 8px;border-radius:8px}
+.answers{display:grid;gap:12px}
+.ans{display:flex;align-items:center;gap:12px;min-height:56px;padding:12px 18px;border:3px solid #134e4a;border-radius:16px;background:#fff;font:700 18px Nunito,sans-serif;color:var(--fg);text-align:left;cursor:pointer;transition:background var(--t),transform var(--t)}
+.ans:hover{background:#f0fdfa}
+.ans[aria-pressed=true]{background:#ccfbf1;box-shadow:var(--clay-sm)}
+.ans .k{width:32px;height:32px;border-radius:10px;border:2px solid #134e4a;display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.result{text-align:center}
+.level{display:inline-grid;place-items:center;width:120px;height:120px;border-radius:32px;background:var(--secondary);border:3px solid #134e4a;box-shadow:var(--clay);font-size:44px;font-weight:900;margin:8px 0 18px}
+.result p{color:var(--muted-fg);max-width:520px;margin:0 auto 22px}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{background:var(--card);border:3px solid #134e4a;border-radius:var(--r);box-shadow:var(--clay);padding:28px;display:flex;flex-direction:column}
+.plan.hl{background:#ccfbf1}
+.plan .tag{align-self:flex-start;background:var(--accent);color:#fff;font-weight:800;font-size:14px;padding:4px 12px;border-radius:99px;border:2px solid #134e4a;margin-bottom:12px}
+.plan h3{font-size:24px}
+.plan .price{font-size:36px;font-weight:900;margin:8px 0}
+.plan .price small{font-size:16px;font-weight:700;color:var(--muted-fg)}
+.plan ul{list-style:none;margin:8px 0 22px;flex:1}
+.plan li{padding:6px 0 6px 28px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:12px;width:16px;height:9px;border-left:3px solid var(--primary);border-bottom:3px solid var(--primary);transform:rotate(-45deg)}
+.faq{max-width:780px}
+.faq details{background:var(--card);border:3px solid #134e4a;border-radius:18px;margin-bottom:14px;box-shadow:var(--clay-sm)}
+.faq summary{cursor:pointer;font-weight:800;font-size:19px;padding:18px 22px;list-style:none;display:flex;justify-content:space-between;gap:12px;min-height:56px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:26px;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq p{padding:0 22px 20px;color:var(--muted-fg)}
+.signup{background:#0b3b38;color:#ccfbf1;border-radius:32px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.signup h2{color:#fff}
+.signup form{display:grid;gap:14px}
+.signup label{display:grid;gap:6px;font-weight:700}
+.signup input{font:inherit;min-height:52px;padding:0 16px;border-radius:14px;border:3px solid #2dd4bf;background:#fff;color:var(--fg)}
+.signup input[aria-invalid=true]{border-color:#fca5a5}
+.signup .err{color:#fecaca;font-size:15px;min-height:22px;font-weight:600}
+.signup .ok{display:none;background:#ccfbf1;color:#0b3b38;border-radius:14px;padding:12px 16px;font-weight:800}
+footer{padding:34px 0;color:var(--muted-fg);font-size:15px}
+@media (max-width:920px){
+  .links{display:none}
+  .hero,.signup{grid-template-columns:1fr}
+  .steps,.plans{grid-template-columns:1fr}
+  .bubbles{min-height:320px;max-width:440px;width:100%;margin:0 auto}
+}
+@media (max-width:560px){
+  .quiz{padding:22px}
+  .signup{padding:26px}
+  section{padding:52px 0}
+  .bubble{max-width:230px;padding:14px 16px}
+  .qnav .btn{padding:0 18px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><i aria-hidden="true">S</i>Speakly</a>
+    <ul class="links">
+      <li><a href="#test">Тест уровня</a></li>
+      <li><a href="#plans">Цены</a></li>
+      <li><a href="#faq">Вопросы</a></li>
+    </ul>
+    <a href="#signup" class="btn alt">Пробный урок</a>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div>
+    <h1>Заговорите по-английски за <mark>6 месяцев</mark></h1>
+    <p>Уроки один на один с преподавателем по видео. Занимаетесь, когда удобно, а на каждом уроке говорите больше половины времени.</p>
+    <div class="cta">
+      <a href="#test" class="btn">Пройти тест уровня</a>
+      <a href="#plans" class="btn alt">Смотреть цены</a>
+    </div>
+  </div>
+  <div class="bubbles" aria-hidden="true">
+    <div class="bubble b1">Hi! How was your weekend?<small>преподаватель</small></div>
+    <div class="bubble b2">It was great, I went hiking!<small>вы, через 3 месяца</small></div>
+    <div class="bubble b3">Прогресс к уровню B1<div class="bar"><span></span></div><small>осталось 14 уроков</small></div>
+  </div>
+</div>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="title">Как проходит обучение</h2>
+    <p class="lead">Три шага, никаких учебников на 400 страниц.</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Тест и знакомство</h3><p>Определяем уровень и цель: работа, переезд, путешествия или экзамен.</p></div>
+      <div class="step"><div class="n">2</div><h3>Уроки по 50 минут</h3><p>Разговор, грамматика на живых примерах, домашка на 15 минут в приложении.</p></div>
+      <div class="step"><div class="n">3</div><h3>Проверка раз в месяц</h3><p>Короткий срез показывает, что улучшилось и что подтянуть дальше.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <div class="wrap">
+    <h2 class="title" style="text-align:center">Тест уровня за 2 минуты</h2>
+    <p class="lead" style="text-align:center;margin-left:auto;margin-right:auto">Шесть вопросов. Результат и подходящий курс покажем сразу.</p>
+    <div class="quiz" id="quiz" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <h2 class="title">Цены</h2>
+    <p class="lead">Платите за пакет уроков. Неиспользованные уроки переносятся, сгорают только через год.</p>
+    <div class="plans">
+      <div class="plan"><h3>Старт</h3><div class="price">1 290 ₽<small> / урок</small></div><ul><li>Пакет из 8 уроков</li><li>Преподаватель из России</li><li>Домашние задания в приложении</li></ul><a href="#signup" class="btn alt">Выбрать</a></div>
+      <div class="plan hl"><span class="tag">Чаще выбирают</span><h3>Прогресс</h3><div class="price">1 090 ₽<small> / урок</small></div><ul><li>Пакет из 24 уроков</li><li>Разговорный клуб раз в неделю</li><li>Ежемесячная проверка уровня</li></ul><a href="#signup" class="btn">Выбрать</a></div>
+      <div class="plan"><h3>Носитель</h3><div class="price">1 990 ₽<small> / урок</small></div><ul><li>Пакет из 12 уроков</li><li>Преподаватель из США или Великобритании</li><li>Подготовка к IELTS по запросу</li></ul><a href="#signup" class="btn alt">Выбрать</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2 class="title">Частые вопросы</h2>
+    <details><summary>Можно ли перенести урок?</summary><p>Да, бесплатно, если предупредить за 6 часов до начала.</p></details>
+    <details><summary>Что нужно для занятий?</summary><p>Компьютер или телефон с камерой и наушники. Уроки идут на нашей платформе прямо в браузере.</p></details>
+    <details><summary>Если преподаватель не подойдёт?</summary><p>Напишите куратору, подберём другого. Оставшиеся уроки сохранятся.</p></details>
+  </div>
+</section>
+
+<section id="signup" style="padding-top:20px">
+  <div class="wrap">
+    <div class="signup">
+      <div>
+        <h2 class="title">Пробный урок бесплатно</h2>
+        <p>25 минут с преподавателем: проверим уровень разговорной речи и составим план на первый месяц.</p>
+      </div>
+      <form id="form" novalidate>
+        <label for="sname">Имя<input id="sname" autocomplete="name" aria-describedby="sname-error"></label>
+        <span class="err" id="sname-error"></span>
+        <label for="scontact">Телефон или Telegram<input id="scontact" autocomplete="tel" aria-describedby="scontact-error" placeholder="+7 900 000-00-00 или @username"></label>
+        <span class="err" id="scontact-error"></span>
+        <button class="btn" type="submit">Записаться на пробный урок</button>
+        <p class="ok" id="ok" role="status">Спасибо! Это демо: заявка никуда не отправлена.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© Speakly. Демонстрационный сайт для портфолио, школа вымышленная.</div></footer>
+
+<script>
+const Q=[
+ {q:'She ___ a teacher.',a:['am','is','are','be'],c:1},
+ {q:'I ___ to the cinema yesterday.',a:['go','goes','went','have gone'],c:2},
+ {q:'If it rains tomorrow, we ___ at home.',a:['stay','will stay','would stay','stayed'],c:1},
+ {q:'I have lived here ___ 2019.',a:['for','since','from','during'],c:1},
+ {q:'If I ___ more time, I would learn Spanish.',a:['have','had','will have','would have'],c:1},
+ {q:'By the time we arrived, the film ___.',a:['already started','has already started','had already started','was already start'],c:2}
+];
+const levels=[
+ ['A1','Начальный','Вы знаете базовые слова. Начнём с простых фраз для общения и чтения.'],
+ ['A2','Элементарный','Справляетесь с простыми ситуациями. Пора уверенно говорить о прошлом и планах.'],
+ ['B1','Средний','Объясняетесь в поездках и на работе. Будем убирать ошибки и расширять словарь.'],
+ ['B2','Выше среднего','Свободно поддерживаете беседу. Дальше нюансы, идиомы и деловой английский.']
+];
+const quiz=document.getElementById('quiz');let i=0,ans=Array(Q.length).fill(null);
+function esc(s){return s.replace(/___/,'<code>___</code>')}
+function render(){
+  if(i>=Q.length)return result();
+  const it=Q[i];
+  quiz.innerHTML=`<div class="qhead"><span>Вопрос ${i+1} из ${Q.length}</span><span>${Math.round(i/Q.length*100)}%</span></div>
+  <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${Q.length}" aria-valuenow="${i}" aria-label="Пройдено вопросов"><span style="width:${i/Q.length*100}%"></span></div>
+  <p class="q" id="qtext">${esc(it.q)}</p>
+  <div class="answers" role="group" aria-labelledby="qtext">${it.a.map((a,k)=>`<button type="button" class="ans" data-k="${k}" aria-pressed="${ans[i]===k}"><span class="k" aria-hidden="true">${'ABCD'[k]}</span>${a}</button>`).join('')}</div>
+  <div class="qnav"><button type="button" class="btn alt" id="back" ${i===0?'disabled':''}>Назад</button><button type="button" class="btn" id="fwd" ${ans[i]===null?'disabled':''}>${i===Q.length-1?'Узнать результат':'Дальше'}</button></div>`;
+  quiz.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;quiz.querySelectorAll('.ans').forEach(x=>x.setAttribute('aria-pressed',x===b));document.getElementById('fwd').disabled=false});
+  document.getElementById('back').onclick=()=>{i--;render()};
+  document.getElementById('fwd').onclick=()=>{i++;render();quiz.querySelector('button:not([disabled])')?.focus()};
+}
+function result(){
+  const score=ans.reduce((s,a,k)=>s+(a===Q[k].c),0);
+  const L=levels[score<=1?0:score<=3?1:score<=4?2:3];
+  quiz.innerHTML=`<div class="result"><div class="qhead" style="justify-content:center">Правильных ответов: ${score} из ${Q.length}</div>
+  <div class="level">${L[0]}</div><h3 style="font-size:28px;margin-bottom:8px">${L[1]}</h3><p>${L[2]}</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a href="#signup" class="btn">Записаться на пробный урок</a><button type="button" class="btn alt" id="again">Пройти заново</button></div></div>`;
+  document.getElementById('again').onclick=()=>{i=0;ans.fill(null);render()};
+}
+render();
+
+function setErr(id,m){document.getElementById(id+'-error').textContent=m;document.getElementById(id).setAttribute('aria-invalid',m?'true':'false')}
+document.getElementById('form').addEventListener('submit',e=>{
+  e.preventDefault();let first=null;
+  const n=document.getElementById('sname').value.trim();
+  if(n.length<2){setErr('sname','Введите имя');first=first||'sname'}else setErr('sname','');
+  const c=document.getElementById('scontact').value.trim();
+  const ok=/^@[A-Za-z0-9_]{5,}$/.test(c)||c.replace(/\D/g,'').length>=10;
+  if(!ok){setErr('scontact','Укажите телефон из 10–11 цифр или ник в Telegram через @');first=first||'scontact'}else setErr('scontact','');
+  if(first){document.getElementById(first).focus();document.getElementById('ok').style.display='none';return}
+  document.getElementById('ok').style.display='block';e.target.reset();
+});
+</script>
+</body>
+</html>
