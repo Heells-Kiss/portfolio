@@ -14,7 +14,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-header{padding:72px 0 40px}
+header{padding-block:72px 40px}
 h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
 header p{color:var(--muted);font-size:19px;max-width:640px;margin-top:18px}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
@@ -32,7 +32,7 @@ header p{color:var(--muted);font-size:19px;max-width:640px;margin-top:18px}
 .how ul{display:grid;grid-template-columns:1fr 1fr;gap:12px 30px;list-style:none;color:var(--muted)}
 .how li::before{content:'✓ ';color:var(--accent);font-weight:700}
 footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px}
-@media (max-width:820px){.grid{grid-template-columns:1fr}.how ul{grid-template-columns:1fr}header{padding:48px 0 30px}}
+@media (max-width:820px){.grid{grid-template-columns:1fr}.how ul{grid-template-columns:1fr}header{padding-block:48px 30px}}
 </style>
 </head>
 <body>
